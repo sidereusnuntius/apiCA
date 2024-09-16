@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+import org.hibernate.validator.constraints.Length;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -28,10 +29,10 @@ public class User implements Serializable {
 
     @Column(nullable = false)
     @NotBlank(message = "Senha em branco.")
-    @Schema(title = "Senha", example = "xanxanx")
+    @Length(min = 8, message = "Senha curta demais.")
+    @Schema(title = "Senha", example = "xanxanx", description = "Deve ter mais de 8 caracteres.")
     private String password;
-    @Schema(title = "Data de nascimento", example = "2024-12-03")
+    @Schema(title = "Data de nascimento", example = "2024-12-03", defaultValue = "2000-01-01")
     private Date birthdate;
-
     private String role;
 }

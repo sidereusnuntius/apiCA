@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @OpenAPIDefinition(
-		servers = {@Server(url = "/", description = "Default Server URL")},
+		servers = {@Server(url = "/api/", description = "Default Server URL")},
 		info = @Info(title = "apiCA", version = "1", description = "API desenvolvida para o Cento Acadêmico do campus VII da UEPB."))
 public class ApiCaApplication {
 

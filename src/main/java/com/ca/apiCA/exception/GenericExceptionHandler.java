@@ -1,5 +1,6 @@
 package com.ca.apiCA.exception;
 
+import com.ca.apiCA.service.exception.ConflictException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,5 +27,13 @@ public class GenericExceptionHandler {
         return ResponseEntity
                 .status(HttpStatus.UNPROCESSABLE_ENTITY)
                 .body(new ExceptionDTO(message));
+    }
+
+    @ExceptionHandler(ConflictException.class)
+    public ResponseEntity<ExceptionDTO> notValid(ConflictException e, HttpServletRequest request) {
+
+        return ResponseEntity
+                .status(HttpStatus.CONFLICT)
+                .body(new ExceptionDTO(e.getMessage()));
     }
 }

@@ -35,7 +35,11 @@ public class UserController {
                     @ApiResponse(
                             description = "Um ou mais campos está vazio ou possui valor inválido..",
                             responseCode = "422",
-                    content = { @Content(schema = @Schema(implementation = ExceptionDTO.class))})
+                    content = { @Content(schema = @Schema(implementation = ExceptionDTO.class))}),
+                    @ApiResponse(
+                            description = "Nome de usuário ou e-mail já cadastrado.",
+                            responseCode = "409",
+                            content = { @Content(schema = @Schema(implementation = ExceptionDTO.class))})
             }
     )
     @PostMapping(path = "/cadastro")
