@@ -31,7 +31,7 @@ public class User implements Serializable {
     @Schema(title = "Senha", example = "xanxanx")
     private String password;
     @Schema(title = "Data de nascimento", example = "2024-12-03")
-    private Date birth;
+    private Date birthdate;
 
     private String role;
 }

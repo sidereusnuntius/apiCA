@@ -38,7 +38,7 @@ public class UserController {
                     content = { @Content(schema = @Schema(implementation = ExceptionDTO.class))})
             }
     )
-    @PostMapping(path = "/new")
+    @PostMapping(path = "/cadastro")
     public ResponseEntity<String> insert(@RequestBody @Validated User user) {
         userService.insert(user);
         return new ResponseEntity(HttpStatus.CREATED);
