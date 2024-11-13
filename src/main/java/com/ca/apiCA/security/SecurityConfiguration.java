@@ -17,7 +17,6 @@ import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
@@ -30,7 +29,7 @@ public class SecurityConfiguration {
     protected final String[] swaggerUrlPatterns = {"/v3/**", "/swagger-ui/**"};
     protected static final List<String> allowedMethods = Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS");
     protected static final List<String> allowedHeaders = List.of("*");
-    protected static final long maxAge = 3600;
+    protected static final long maxAge = 36000;
 
     @Autowired
     private AuthenticationConfiguration authenticationConfiguration;
@@ -44,6 +43,7 @@ public class SecurityConfiguration {
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                 .requestMatchers(swaggerUrlPatterns).permitAll()
                 .requestMatchers("/user/cadastro").permitAll()
+                .requestMatchers("/msg", "GET").permitAll()
                 .anyRequest().authenticated())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilter(new AuthenticationFilter(authenticationConfiguration.getAuthenticationManager()))

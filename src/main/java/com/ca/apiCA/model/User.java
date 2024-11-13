@@ -5,12 +5,16 @@ import io.swagger.v3.oas.annotations.media.Schema;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+
 import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 
 @Document(collection = "user")
 @Data
@@ -31,4 +35,7 @@ public class User implements Serializable {
     @Schema(title = "Data de nascimento", example = "2024-12-03", defaultValue = "2000-01-01")
     private Date birthdate;
     private String role;
+
+    @DBRef
+    private List<Message> posts;
 }
